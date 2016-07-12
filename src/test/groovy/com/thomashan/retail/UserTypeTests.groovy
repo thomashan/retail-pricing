@@ -17,7 +17,7 @@ class UserTypeTests {
 
     @Test
     void testNormal_ShouldReceive5PercentDiscount_IfRegisteredForMoreThanTwoYears() {
-        DiscountContext discountContext = new DiscountContext(now() - 2.years)
+        DiscountContext discountContext = new DiscountContext(now() - 2.years - 1.s)
 
         assert 0.5 == UserType.NORMAL.calculateDiscount(10, discountContext)
     }
