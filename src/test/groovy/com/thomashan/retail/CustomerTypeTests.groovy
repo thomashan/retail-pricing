@@ -1,8 +1,9 @@
 package com.thomashan.retail
 
+import com.thomashan.datetime.DateTimeCategory
 import org.junit.Test
 
-import java.time.ZonedDateTime
+import static java.time.ZonedDateTime.now
 
 class CustomerTypeTests {
     @Test
@@ -17,21 +18,23 @@ class CustomerTypeTests {
 
     @Test
     void testNormal_ShouldReceive5PercentDiscount_IfRegisteredForMoreThanTwoYears() {
-        DiscountContext discountContext = new DiscountContext(ZonedDateTime.now().minusYears(2))
+        use(DateTimeCategory) {
+            DiscountContext discountContext = new DiscountContext(now() - 2.years)
 
-        assert 0.5 == CustomerType.NORMAL.calculateDiscount(10, discountContext)
+            assert 0.5 == CustomerType.NORMAL.calculateDiscount(10, discountContext)
+        }
     }
 
     @Test
     void testNormal_ShouldReceiveZeroDiscountForAmountLessThan100Dollars_IfRegisteredForTwoYears() {
-        DiscountContext discountContext = new DiscountContext(ZonedDateTime.now())
+        DiscountContext discountContext = new DiscountContext(now())
 
         assert 0 == CustomerType.NORMAL.calculateDiscount(10, discountContext)
     }
 
     @Test
     void testNormal_ShouldReceive5DollarDiscountFor100Dollars_IfRegisteredForLessThanTwoYears() {
-        DiscountContext discountContext = new DiscountContext(ZonedDateTime.now())
+        DiscountContext discountContext = new DiscountContext(now())
 
         assert 5 == CustomerType.NORMAL.calculateDiscount(100, discountContext)
     }
