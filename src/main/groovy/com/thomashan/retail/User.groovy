@@ -1,16 +1,23 @@
 package com.thomashan.retail
 
+import groovy.transform.ToString
+
 import java.time.ZonedDateTime
 
 import static java.time.ZonedDateTime.now
 
+@ToString
 class User {
     ZonedDateTime registeredDateTime = now()
     Basket basket = new Basket()
     UserType userType
 
+    BigDecimal getTotal() {
+        return basket.total
+    }
+
     BigDecimal getNetPayableAmount() {
-        basket.getNetPayableAmount(userType, new DiscountContext(registeredDateTime))
+        return basket.getNetPayableAmount(userType, new DiscountContext(registeredDateTime))
     }
 
     void add(Product product) {

@@ -27,4 +27,8 @@ enum UserType implements Discount {
     }
 
     abstract BigDecimal calculateDiscount(BigDecimal amount, DiscountContext discountContext)
+
+    static UserType getRandom() {
+        return UserType.values()[new Random().nextInt(UserType.values().size())]
+    }
 }
