@@ -1,7 +1,5 @@
 package com.thomashan.retail
 
-import com.thomashan.datetime.DateTimeCategory
-
 import static java.time.ZonedDateTime.now
 
 enum UserType implements Discount {
@@ -20,14 +18,11 @@ enum UserType implements Discount {
     NORMAL{
         @Override
         BigDecimal calculateDiscount(BigDecimal amount, DiscountContext discountContext) {
-            use(DateTimeCategory) {
-                if (discountContext.registrationDateTime < now() - 2.years) {
-                    println("in here")
-                    return 0.05 * amount
-                }
-
-                return (amount.toInteger() / 100).toInteger() * 5
+            if (discountContext.registrationDateTime < now() - 2.years) {
+                return 0.05 * amount
             }
+
+            return (amount.toInteger() / 100).toInteger() * 5
         }
     }
 

@@ -1,0 +1,4 @@
+moduleName=Date time module
+moduleVersion=0.1
+extensionClasses=com.thomashan.datetime.DateTimeCategory
+staticExtensionClasses=

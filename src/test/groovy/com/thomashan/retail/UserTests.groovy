@@ -1,6 +1,5 @@
 package com.thomashan.retail
 
-import com.thomashan.datetime.DateTimeCategory
 import org.junit.Before
 import org.junit.Test
 
@@ -34,12 +33,10 @@ class UserTests {
 
     @Test
     void testNormal_Valued() {
-        use(DateTimeCategory) {
-            user.userType = UserType.NORMAL
-            user.registeredDateTime = now() - 2.years
+        user.userType = UserType.NORMAL
+        user.registeredDateTime = now() - 2.years
 
-            assert 342.5 == user.netPayableAmount
-        }
+        assert 342.5 == user.netPayableAmount
     }
 
     @Test
