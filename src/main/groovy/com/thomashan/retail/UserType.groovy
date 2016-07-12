@@ -4,7 +4,7 @@ import com.thomashan.datetime.DateTimeCategory
 
 import static java.time.ZonedDateTime.now
 
-enum CustomerType implements Discount {
+enum UserType implements Discount {
     EMPLOYEE{
         @Override
         BigDecimal calculateDiscount(BigDecimal amount, DiscountContext discountContext) {

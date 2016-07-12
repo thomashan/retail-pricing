@@ -5,15 +5,15 @@ import org.junit.Test
 
 import static java.time.ZonedDateTime.now
 
-class CustomerTypeTests {
+class UserTypeTests {
     @Test
     void testEmployee_ShouldReceive30PercentDiscount() {
-        assert 3 == CustomerType.EMPLOYEE.calculateDiscount(10, null)
+        assert 3 == UserType.EMPLOYEE.calculateDiscount(10, null)
     }
 
     @Test
     void testAffiliate_ShouldReceive10PercentDiscount() {
-        assert 1 == CustomerType.AFFILIATE.calculateDiscount(10, null)
+        assert 1 == UserType.AFFILIATE.calculateDiscount(10, null)
     }
 
     @Test
@@ -21,7 +21,7 @@ class CustomerTypeTests {
         use(DateTimeCategory) {
             DiscountContext discountContext = new DiscountContext(now() - 2.years)
 
-            assert 0.5 == CustomerType.NORMAL.calculateDiscount(10, discountContext)
+            assert 0.5 == UserType.NORMAL.calculateDiscount(10, discountContext)
         }
     }
 
@@ -29,13 +29,13 @@ class CustomerTypeTests {
     void testNormal_ShouldReceiveZeroDiscountForAmountLessThan100Dollars_IfRegisteredForTwoYears() {
         DiscountContext discountContext = new DiscountContext(now())
 
-        assert 0 == CustomerType.NORMAL.calculateDiscount(10, discountContext)
+        assert 0 == UserType.NORMAL.calculateDiscount(10, discountContext)
     }
 
     @Test
     void testNormal_ShouldReceive5DollarDiscountFor100Dollars_IfRegisteredForLessThanTwoYears() {
         DiscountContext discountContext = new DiscountContext(now())
 
-        assert 5 == CustomerType.NORMAL.calculateDiscount(100, discountContext)
+        assert 5 == UserType.NORMAL.calculateDiscount(100, discountContext)
     }
 }
